@@ -1,0 +1,24 @@
+{
+  "name": "gh-query",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinge1718/GH-Query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vinge1718/GH-Query/issues"
+  },
+  "homepage": "https://github.com/Vinge1718/GH-Query#readme"
+}
