@@ -13,11 +13,21 @@ var lib = require("bower-files")({
       "main":[
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
-        "dist/css/styling.css",
-        "dist/js/boostrap.js"
+        "dist/js/boostrap.js",
+        "dist/css/styling.css"
       ]
     }
   }
+});
+var browserSync = require("browser-sync").create();
+
+gulp.task("serve", function(){
+  browserSync.init({
+    server:{
+      baseDir:"./",
+      index:"index.httml"
+    }
+  });
 });
 
 gulp.task("bowerCSS", function(){
