@@ -4,17 +4,42 @@ var source = require("vinyl-source-stream");
 var uglify = require("gulp-uglify");
 var utilities = require("gulp-util");
 var buildProduction = utilities.env.production;
-var dell = require("del");
+var del = require("del");
 var jshint = require("gulp-jshint");
-/*
 var concat = require("gulp-concat")
+var lib = require("bower-files")({
+  "overrides":{
+    "bootstrap":{
+      "main":[
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/css/styling.css",
+        "dist/js/boostrap.js"
+      ]
+    }
+  }
+});
+
+gulp.task("bowerCSS", function(){
+  return gulp.src(lib.ext("css").files)
+  .pipe(concat("vendor.css"))
+  .pipe(gulp.dest("./build/css"));
+});
+
+gulp.task("bowerJS", function(){
+  return gulp.src(lib.ext("js").files)
+  .pipe(concat("vendor.min.js"))
+  .pipe(uglify())
+  .pipe(gulp.dest("./build/js"))
+});
+
+gulp.task("bower", ["bowerJS", "bowerCSS"]);
 
 gulp.task("concatenate", function(){
   return gulp.src(["./js/*-interface.js"])
   .pipe(concat("allFrontEnd.js"))
   .pipe(gulp.dest("./tmp"));
 });
-*/
 
 gulp.task("jshint", function(){
   return gulp.src(["js/*.js"])
@@ -32,8 +57,8 @@ gulp.task("minifyScripts", ["jsBrowserify"], function(){
   .pipe(gulp.dest("./build/js"));
 });
 
-gulp.task("jsBrowserify",function(){
-  return browserify({ entries: ["./js/gh-query-interface.js"]})
+gulp.task("jsBrowserify", ["concatenate"], function(){
+  return browserify({ entries: ["./tmp/allFrontEnd.js"]})
   .bundle()
   .pipe(source("app.js"))
   .pipe(gulp.dest("./build/js"));
@@ -45,4 +70,5 @@ gulp.task("build", ["clean"], function(){
   }else {
     gulp.start("jsBrowserify");
   }
+  gulp.start("bower");
 });
