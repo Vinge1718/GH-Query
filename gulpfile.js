@@ -5,6 +5,7 @@ var uglify = require("gulp-uglify");
 var utilities = require("gulp-util");
 var buildProduction = utilities.env.production;
 var dell = require("del");
+var jshint = require("gulp-jshint");
 /*
 var concat = require("gulp-concat")
 
@@ -14,6 +15,12 @@ gulp.task("concatenate", function(){
   .pipe(gulp.dest("./tmp"));
 });
 */
+
+gulp.task("jshint", function(){
+  return gulp.src(["js/*.js"])
+  .pipe(jshint())
+  .pipe(jshint.reporter("default"));
+});
 
 gulp.task("clean", function(){
   return del(["build"])
@@ -32,7 +39,7 @@ gulp.task("jsBrowserify",function(){
   .pipe(gulp.dest("./build/js"));
 })
 
-gulp.task("build", function(){
+gulp.task("build", ["clean"], function(){
   if (buildProduction){
     gulp.start("minifyScripts");
   }else {
