@@ -25,9 +25,19 @@ gulp.task("serve", function(){
   browserSync.init({
     server:{
       baseDir:"./",
-      index:"index.httml"
+      index:"index.html"
     }
   });
+  gulp.watch(["js/*.js"], ["jsBuild"]);
+  gulp.watch(["bower.jason"], ["bowerBuild"]);
+});
+
+gulp.task("jsBuild",["jsBrowserify", "jshint"], function(){
+  browserSync.reload();
+});
+
+gulp.task("bowerBuild", ["bower"], function(){
+  browserSync.reload();
 });
 
 gulp.task("bowerCSS", function(){
