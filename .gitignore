@@ -1,2 +1,4 @@
 node_modules/
 .evn
+tmp/
+bower_components/
