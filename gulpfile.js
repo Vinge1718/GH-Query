@@ -21,15 +21,9 @@ var lib = require("bower-files")({
 });
 var browserSync = require("browser-sync").create();
 
-gulp.task("serve", function(){
-  browserSync.init({
-    server:{
-      baseDir:"./",
-      index:"index.html"
-    }
-  });
-  gulp.watch(["js/*.js"], ["jsBuild"]);
-  gulp.watch(["bower.jason"], ["bowerBuild"]);
+
+gulp.task("htmlBuild", function(){
+  browserSync.reload();
 });
 
 gulp.task("jsBuild",["jsBrowserify", "jshint"], function(){
@@ -68,7 +62,7 @@ gulp.task("jshint", function(){
 });
 
 gulp.task("clean", function(){
-  return del(["build"])
+  return del(["build", "tmp"]);
 });
 
 gulp.task("minifyScripts", ["jsBrowserify"], function(){
@@ -91,4 +85,16 @@ gulp.task("build", ["clean"], function(){
     gulp.start("jsBrowserify");
   }
   gulp.start("bower");
+});
+
+gulp.task("serve", function(){
+  browserSync.init({
+    server:{
+      baseDir:"./",
+      index:"index.html"
+    }
+  });
+  gulp.watch(["js/*.js"], ["jsBuild"]);
+  gulp.watch(["bower.jason"], ["bowerBuild"]);
+  gulp.watch(["*.html"], ["htmlBuild"]);
 });
