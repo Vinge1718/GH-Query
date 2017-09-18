@@ -15,15 +15,20 @@
       <div class="row">
         <div class="col-md-4">
           <form id="request">
-            <input type="text" id="userName" class="form-control">
-            <button id="search" type="submit">Search</button>
-          </form><hr>
+            <div class="form-group">
+              <input type="text" id="userName" class="form-control">
+              <input id="search" type="submit">
+            </div>
+          </form>
         </div>
         <div class="col-md-8">
-          <div id="results"></div>
+          <div id="results" class="row">
+            <div class="col-md-6" id="avatar"></div>
+            <div class="col-md-6" id="about"></div>
+          </div>
         </div>
-
-      </div>
+      </div><hr>
+      <div id="repos"></div>
     </div>
   </body>
 </html>
