@@ -5,7 +5,7 @@ $(document).ready(function(){
     event.preventDefault();
     var newSearch = new Search();
     var userName = $("#userName").val();
-    $("#userName, #avatar, #about, #repos").val("");
+    $("#userName, #avatar, #about, #repos").empty();
     newSearch.query(userName);
   });
 });
