@@ -25,4 +25,4 @@ You will require:
 [vinge1718](https://github.com/Vinge1718)
 
 ## License
-his project is licensed under the MIT License
+This project is licensed under the MIT License
