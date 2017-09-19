@@ -19,10 +19,10 @@ You will require:
 - [jquery](https://jquery.com/)
 - [boostrap](http://getbootstrap.com/)
 - [npm](https://www.npmjs.com/)
-- [bower](https://bower.io
+- [bower](https://bower.io)
 
 ## Authors
 [vinge1718](https://github.com/Vinge1718)
 
 ## License
-his project is licensed under the MIT License 
+his project is licensed under the MIT License
